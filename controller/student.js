@@ -103,6 +103,7 @@ export const downloadData = async function (req, res) {
             };
             // and push this list inside dataPresent array
             dataPresent.push(list);
+            resultV = "On Hold";
         }
     }
     // convert this array into CSV file
