@@ -1,3 +1,4 @@
+// for flash messages
 export const setFlash = (req , res ,next)=>{
     res.locals.flash = {
         'success': req.flash('success'),
