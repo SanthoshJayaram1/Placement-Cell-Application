@@ -31,7 +31,6 @@ export const interviewAllocation = async function (req, res) {
         if (companyPresent) {
             const id = req.body.studentID;
             const studentPresent = await Student.findById(id);
-
             // first checks whether there is a Entry of company linked  with student  in Database
             const index = studentPresent.interviews.indexOf(companyPresent.id);
             // if there is no record of company linked with student
@@ -39,14 +38,20 @@ export const interviewAllocation = async function (req, res) {
                 //then adds interview with studentpresent
                 studentPresent.interviews.push(companyPresent.id);
                 await studentPresent.save();
+                // first checks whether there is a Entry of student linked with Interview  in Interview collection
+                const cindex = companyPresent.students.indexOf(studentPresent.id);
+                // if there is no link then adds a link with student in Interview collection 
+                if (cindex == -1) {
+                    companyPresent.students.push(studentPresent.id);
+                    await companyPresent.save();
+                }
+                req.flash('success' , 'Interview Allocated To Student SuccessFully !!');
+            }else{
+                // if Interview is already sceduled to the student before, then scheduling is not allowed( only once is allowed)
+                const datePart = companyPresent.date.toISOString().split('T')[0];
+                req.flash('error',`Interview is Already scheduled on ${datePart}`);
             }
-            // first checks whether there is a Entry of student linked with Interview  in Interview collection
-            const cindex = companyPresent.students.indexOf(studentPresent.id);
-            // if there is no link then adds a link with student in Interview collection 
-            if (cindex == -1) {
-                companyPresent.students.push(studentPresent.id);
-                await companyPresent.save();
-            }
+            
         } else {
             // if company is not present in Interview collection
             const company = await Interview.create({ companyName: req.body.companyName, date: req.body.date });
@@ -60,8 +65,8 @@ export const interviewAllocation = async function (req, res) {
             // update in student collection
             studentPresent.interviews.push(company);
             await studentPresent.save();
+            req.flash('success' , 'Interview Allocated To Student SuccessFully !!');
         }
-        req.flash('success' , 'Interview Allocate To Student SuccessFully !!');
         // redirect to dashboard
         return res.redirect('/employee/dashboard');
     } catch (error) {
