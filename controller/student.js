@@ -70,18 +70,16 @@ export const downloadData = async function (req, res) {
 
     // then after loop over for every student inside Student list
     for (let student of studentList) {
-
+       const studentID=student._id;
         // loop over interview details of every student
         for (let interviewID of student.interviews) {
-
             // get interview document by using interviewId
             const interviewData = await Interview.findById(interviewID);
-
             // loop over to find result status of every interview 
             for(let result of interviewData.result){
                 const resultI=await Result.findById(result);
-                if(interviewID.equals(resultI.interviewId)){
-                    // get the result status if resultId object matches with interviewID object
+                if(interviewID.equals(resultI.interviewId) && studentID.equals(resultI.studentId) ){
+                    // get the result status if resultId object matches with interviewID  and studentId object matches with studentID
                     resultV=resultI.result;
                     break;
                 }
@@ -103,6 +101,7 @@ export const downloadData = async function (req, res) {
             };
             // and push this list inside dataPresent array
             dataPresent.push(list);
+            // reset this value back to default vaule
             resultV = "On Hold";
         }
     }
@@ -112,7 +111,7 @@ export const downloadData = async function (req, res) {
     await csv.toDisk('./studentData.csv');
     // then finally give response as download that csv file
     return res.download('./studentData.csv', () => {
-    // deleting file we saved
+    // deleting the file we saved as studentData.csv
     fs.unlinkSync('./studentData.csv');
     });
 }
