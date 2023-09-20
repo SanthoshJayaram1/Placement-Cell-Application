@@ -14,11 +14,20 @@ export const interviewPage = async function (req, res) {
 
     });
 }
+
 // form for interview allocation
 export const interviewForm = async function (req, res) {
+    const interviewList=await Interview.find({});
+    // getting all the company details present in the Database
+    let companyList=[];
+    for(let intv of interviewList){
+        // push inside the companyList
+        companyList.push({companyName:intv.companyName,interviewDate:intv.date.toISOString().split('T')[0]});
+    }
     return res.render('formForInterviewAllocation', {
         title: "Interview Allocation",
-        id: req.params.id
+        id: req.params.id,
+        companies:companyList
     })
 }
 

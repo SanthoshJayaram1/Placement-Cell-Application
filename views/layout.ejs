@@ -13,12 +13,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" />
     <script rel="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+    <script  src="/js/script.js"></script>
+    
 </head>
 
 <body>
     <%- body %>
     <script>
         
+
         <% if (flash.success && flash.success.length > 0) {%>
              new Noty({
                  then: 'relax',
@@ -37,7 +40,12 @@
                  timeout: 3000
              }).show()
              <% } %>
+
+             
+        
      </script>
+     
+      
 </body>
 
 </html>

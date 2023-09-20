@@ -26,13 +26,14 @@ input:focus {
     box-shadow: 5px lightblue;
 
 }
-button{
-    width: 20%;
-    height:50%;
+
+/* .companyList button{
+    width: 60%;
+    height:20%;
     font-size: 20px;
-    padding: 5px;
     background-color: black;
     color: white;
     border: none;
+    font-size: medium;
     border-radius: 8px;
-}
+} */
