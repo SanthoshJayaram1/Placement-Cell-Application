@@ -47,7 +47,7 @@ export const update = async function (req, res) {
             interview.result.push(createResult);
             await interview.save();
         }else{
-        // if result document for this interview and student already present
+      // if result document for this interview and student already present
              // find that result document and update with latest status of the result  
             const updatedResult=Result.findById(resultAlreadypresent);
             updatedResult.result=req.body.result;
@@ -60,11 +60,20 @@ export const update = async function (req, res) {
                 console.error("Error in updating:", err);
               }
         }
+
+    // here updating status of the student based on result status submitted
         if (req.body.result == "PASS") {
             // if result is updated as PASS then make status of student as placed
             const studentId = req.body.studentId;
             const studentPresent = await Student.findById(studentId);
             studentPresent.status = "placed";
+            await studentPresent.save();
+            req.flash('success', 'Status Updated !!');
+        }else{
+            // if result is updated as other than PASS status  then make status of student as not_placed
+            const studentId = req.body.studentId;
+            const studentPresent = await Student.findById(studentId);
+            studentPresent.status = "not_placed";
             await studentPresent.save();
             req.flash('success', 'Status Updated !!');
         }
