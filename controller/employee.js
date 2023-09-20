@@ -29,7 +29,7 @@ export const createSessionPage = async function (req, res) {
 }
 
 // it creayes session after click on login button
-export const createSession = async function (req, res) {
+export const createUserCredentials = async function (req, res) {
     try {
         // checks for firsh name ,it should not be null
         if (req.body.firstname.length === 0) {
