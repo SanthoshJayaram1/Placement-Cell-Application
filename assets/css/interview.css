@@ -17,11 +17,25 @@ td,th{
     border: 1px solid lightgray;
 }
 
-button{
+/* button{
     background-color: black;
     border: 1px solid white;
     padding: 5px;
-}
-button >a{
+} */
+/* button >a{
     font-size: 16px;
-}
+} */
+
+button{
+    /* button{ */
+      width: 30%;
+      height:25%;
+      font-size: 15px;
+      padding: 10px;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+   /* } */
+   }

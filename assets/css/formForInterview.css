@@ -26,7 +26,19 @@ input:focus {
     box-shadow: 5px lightblue;
 
 }
-
+button{
+    /* button{ */
+      width: 30%;
+      height:25%;
+      font-size: 15px;
+      padding: 10px;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+   /* } */
+   }
 /* .companyList button{
     width: 60%;
     height:20%;
