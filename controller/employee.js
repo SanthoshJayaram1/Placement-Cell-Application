@@ -3,6 +3,9 @@ import validator from 'validator';
 
 //renders sign-in page for employee
 export const SignInPage = async function (req, res) {
+    if(req.user){
+        return res.redirect('/employee/dashboard');
+    }
     return res.render('signIn', {
         title: "SignIn"
     });
@@ -10,7 +13,9 @@ export const SignInPage = async function (req, res) {
 
 // renders dashboard page after user Authentication
 export const SignIn = async function (req, res) {
+    
     try {
+      console.log(req.user);
         req.flash('success', 'Sign In SuccessFully');
         return res.redirect('/employee/dashboard');
     } catch (error) {
