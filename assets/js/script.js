@@ -2,6 +2,7 @@
 const companyID=document.getElementById("cName");
 const date=document.getElementById("iDate");
 
+// on loading content of the page this callback function will be called automatically
 document.addEventListener('DOMContentLoaded', function () {
     // Select all buttons with the class "btn"
     const addBtn = document.querySelectorAll('.btn');
