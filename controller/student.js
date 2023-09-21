@@ -9,6 +9,11 @@ import fs from "fs";
 // employee dashboard list , renders dashboard page
 export const dashboard = async function (req, res) {
     const studentList = await Student.find({});
+    if(!req.user){
+        return res.render('signIn', {
+            title: "SignIn"
+        });
+    }
     return res.render('employeeDashboard', {
         title: "EmployeeDashboard",
         studentList: studentList
