@@ -45,20 +45,20 @@ A company needs to maintain a database of student interviews and job placements.
 
 1. **Navigate to the project directory:**
 
-   ```shell
-   cd placement-cell-web-application
+```shell
+cd placement-cell-web-application
 2. **Install dependencies:**
 
-   ```shell
-   npm install
+```shell
+npm install
 3. **Set up a local database (e.g., MongoDB) and update the database configuration in .env:**
 
-   ``shell
-   DB_URL=your-database-connection-url
+``shell
+DB_URL=your-database-connection-url
 4. **Start the development server:**
-   
-   ```shell
-   npm start
+
+```shell
+npm start
 5.**Open your browser and visit http://localhost:3000 to access the application.**
 
 ### Folder Structure
